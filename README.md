@@ -10,66 +10,79 @@ Import the necessary libraries, such as pandas and numpy.
 
 Read data from CSV files (Books.csv, Users.csv, Ratings.csv) using pd.read_csv() and store them in DataFrames (books, users, ratings).
 
-# 3. Handle Warnings Related to Mixed Data Types:
+# 3. Check Dataset Shapes:
 
-Address the DtypeWarning regarding mixed types in columns (if necessary by specifying dtype or low_memory=False).
+Print the shape of each dataset to confirm they have been loaded correctly.
 
-# 4. Inspect the DataFrames:
+# 4. Merge Datasets to Include Book Titles:
 
-Display the first few rows of each DataFrame using head() to understand the structure and content of the data.
+Merge ratings with books to include book titles and other relevant details.
 
-# 5. Check DataFrame Shapes:
+# 5 . Calculate the Number of Ratings for Each Book:
 
-Use shape to determine the number of rows and columns in each DataFrame.
+Group by Book-Title and count the number of ratings for each book.
 
-# 6. Identify Missing Values:
+# 6. Convert Ratings to Numeric:
 
-Use isnull().sum() to identify missing values in each DataFrame.
+Convert the Book-Rating column to a numeric type to handle any non-numeric values.
 
+# 7. Calculate Average Rating for Each Book:
 
-# 7 . Check for Duplicate Records:
-
-Use duplicated().sum() to check if there are any duplicate records in the DataFrames.
-
-# 8. Merge Ratings with Book Titles:
-
-Merge ratings with books DataFrame on the ISBN column to get a DataFrame with book titles (ratings_with_name).
-
-# 9. Calculate Number of Ratings per Book:
-
-Group by Book-Title and count the number of ratings. Rename the column to num-ratings.
-
-# 10. Convert 'Book-Rating' to Numeric:
-
-Convert the Book-Rating column to numeric to handle non-numeric values (if any).
-
-# 11. Calculate Average Ratings per Book:
-
-Group by Book-Title and compute the mean rating. Rename the column to avg-ratings.
-
-# 12. Merge DataFrames for Popularity:
-
-Merge num_rating_df with avg_rating_df on Book-Title to create a DataFrame (popular_df) with both number of ratings and average ratings.
-
-# 13. Filter Popular Books:
-
-Filter books with at least 250 ratings and sort them by avg-ratings in descending order.
-
-# 14. Merge with Books Data:
-
-Merge popular_df with the original books DataFrame to get additional details like ISBN, Book-Author, etc.
-
-# 15. Remove Duplicates Based on Book Title:
-
-Remove duplicate entries based on the Book-Title column.
+Compute the average rating for each book.
 
 
-# 16. Finalize the Popular Books DataFrame:
+# 8. Merge Average and Number of Ratings DataFrames:
 
-Further refine popular_df to keep only relevant columns and ensure no duplicates.
+Merge the dataframes containing the number of ratings and average ratings.
 
 
+# 9 . Filter Books with Minimum Ratings:
 
+Filter books with at least 250 ratings and sort by average rating.
+
+# 10. Merge Additional Book Information:
+
+Merge popular_df with books to include author names and image URLs, and remove duplicates.
+
+# 11. Identify Active Users:
+
+Group by User-ID to find users who have rated more than 200 books.
+
+# 12. Filter Ratings for Active Users:
+
+Filter the ratings to include only the ratings given by these active users.
+
+# 13. Identify Frequently Rated Books:
+
+Filter books that have been rated by at least 50 different users.
+
+# 14. Create Final Ratings DataFrame:
+
+Create a final ratings dataframe containing only the frequently rated books.
+
+# 15. Create a Pivot Table:
+
+Generate a pivot table for the final_ratings with Book-Title as rows, User-ID as columns, and Book-Rating as values. Fill missing values with 0.
+
+
+# 16 . Compute Cosine Similarity:
+
+Calculate cosine similarity between books based on user ratings.
+
+# 17. Define Recommendation Function:
+
+Implement a function to recommend books based on a given book's similarity score.
+
+# 18 .Test the Recommendation Function:
+
+Use the recommendation function to test for a specific book.
+
+
+# 19 . Save Necessary Data to Files:
+
+Serialize the popular books dataframe, pivot table, books dataframe, and similarity scores to files using the pickle module.
+
+By following these steps, you create a book recommendation system using popularity-based filtering and collaborative filtering techniques with cosine similarity.
 
 
 
